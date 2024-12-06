@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb2o44gj8e513"]
+
+[ext_resource type="Theme" uid="uid://bx4xnp2ea6jq7" path="res://themes/TitleScreen.tres" id="1_7icjf"]
+[ext_resource type="Script" path="res://scripts/console/console_prompt.gd" id="2_vy1ih"]
+
+[node name="ConsolePrompt" type="HBoxContainer"]
+offset_right = 674.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+theme = ExtResource("1_7icjf")
+script = ExtResource("2_vy1ih")
+
+[node name="PromptLabel" type="Label" parent="."]
+layout_mode = 2
+text = "loswald@ncons-9-9-3:-$ "
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "aaa"

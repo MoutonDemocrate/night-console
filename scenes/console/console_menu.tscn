@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://p5frptwq5udu"]
+
+[ext_resource type="Script" path="res://scripts/console/VBoxConsoleSelection.gd" id="2_56r6c"]
+[ext_resource type="Theme" uid="uid://bx4xnp2ea6jq7" path="res://themes/TitleScreen.tres" id="2_g24h0"]
+[ext_resource type="Script" path="res://scripts/console/ConsolePointerLabel.gd" id="3_hjwqb"]
+
+[node name="ConsoleMenu" type="VBoxContainer"]
+offset_right = 1708.0
+offset_bottom = 751.0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme = ExtResource("2_g24h0")
+script = ExtResource("2_56r6c")
+
+[node name="LabelPromInfo" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_g24h0")
+text = "╰───▷ Prometheus Project Briefing"
+script = ExtResource("3_hjwqb")
+initial_text = "╰───▷ Prometheus Project Briefing"
+
+[node name="LabelSignIn" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_g24h0")
+text = "╰───▷ Sign In New Agent"
+script = ExtResource("3_hjwqb")
+initial_text = "╰───▷ Sign In New Agent"
+
+[node name="LabelLogIn" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_g24h0")
+text = "╰───▷ Log In Existing Agent"
+script = ExtResource("3_hjwqb")
+initial_text = "╰───▷ Log In Existing Agent"
+
+[node name="LabelOptions" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_g24h0")
+text = "╰───▷ Options"
+script = ExtResource("3_hjwqb")
+initial_text = "╰───▷ Options"
+
+[node name="LabelSupport" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_g24h0")
+text = "╰───▷ Support The Game"
+script = ExtResource("3_hjwqb")
+initial_text = "╰───▷ Support The Game"
+
+[node name="LabelKill" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_g24h0")
+text = "╰───▷ Kill This Console"
+script = ExtResource("3_hjwqb")
+initial_text = "╰───▷ Kill This Console"
