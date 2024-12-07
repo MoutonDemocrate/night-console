@@ -12,9 +12,11 @@ script = ExtResource("2_vy1ih")
 
 [node name="PromptLabel" type="Label" parent="."]
 layout_mode = 2
-text = "loswald@ncons-9-9-3:-$ "
+size_flags_vertical = 1
+text = "loswald@ncons993:-$ "
+vertical_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "aaa"
+caret_blink = true

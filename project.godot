@@ -10,16 +10,25 @@ config_version=5
 
 [application]
 
-config/name="Night Console"
+config/name="NOCTURNE CONSOLE"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+config/icon="res://assets/textures/nocturne_red.svg"
 
 [autoload]
 
 TextUtils="*res://scripts/global/text_utils.gd"
 GeneralUtils="*res://scripts/global/general_utils.gd"
+Exec="*res://scripts/global/Exec.gd"
+State="*res://scripts/global/State.gd"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
 
 [file_customization]
 
