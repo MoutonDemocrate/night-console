@@ -37,7 +37,10 @@ func su(args : PackedStringArray) -> void :
 USAGE : clear [OPTIONS] [PSW]
 
 OPTIONS :
+	-S		Supersudo (ADMINISTRATICE ACCESS, DO NOT USE)
 	-h		Print help information".replace("\t", "    ")
+	
+	var supersu : bool = false
 	
 	if args :
 		for arg in args :
@@ -45,10 +48,15 @@ OPTIONS :
 				"-h" :
 					output_label.text = help
 					return
+				"-S" :
+					supersu = true
 				_ : 
-					if arg == State.password :
+					if arg == State.password and not supersu :
 						output_label.text = "Correct password, you are now superuser."
 						State.sudo = true
+					elif arg == State.noc_password and supersu :
+						output_label.text = "CORRECT PASSWORD - WELCOME BACK, ADMINISTRATOR"
+						State.supersudo = true
 					else :
 						output_label.text = invalid.format({"error" : "wrong password", "detail" : "this incident will be reported"})
 					return
@@ -88,14 +96,23 @@ OPTIONS :
 	
 	var rec := func (path : String, f : Callable, depth :int = 0, recursive := true) :
 		var keys : Array = State.get_dir(path).keys()
+		var hidden_keys : Array = []
 		return Array(keys).reduce((
 			func (accum:String,key:String) :
 				if recursive :
 					print(key,", from path ", path)
-					if State.get_dir(path)[key] is Dictionary :
-						return accum + "\n" + " ".repeat(depth) + ":: " + f.call(path + "/" + key,f,depth+len(key),true)
+					if State.has_perms(State.current_directory, path) :
+						if State.get_dir(path)[key] is Dictionary:
+							return accum + "\n" + " ".repeat(depth) + ":: " + f.call(path + "/" + key,f,depth+len(key),true)
+						else :
+							return accum + "\n" + " ".repeat(depth) + ":: " + key
 					else :
-						return accum + "\n" + " ".repeat(depth) + ":: " + key
+						if path in hidden_keys :
+							return accum
+						else :
+							hidden_keys.append(path)
+							return accum + " :: " + "INSUFFICIENT PERMS"
+
 				else :
 					return accum + "\n" + ":: " + key
 		), path.split("/")[-1] if path != "/" else "root")

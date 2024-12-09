@@ -29,6 +29,8 @@ State="*res://scripts/global/State.gd"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+mouse_cursor/custom_image="res://assets/textures/cursor/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(9, 2)
 
 [file_customization]
 

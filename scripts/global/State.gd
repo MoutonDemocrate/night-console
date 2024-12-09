@@ -1,7 +1,8 @@
 extends Node
 
 @export var default_dir : String = "res://FOLDERTREE"
-@export var password : String = "ok if you find this, you weren't supposed to, so just uhhh look away"
+@export var password : String = "hypergetic_soup##8314"
+@export var noc_password : String = "################################"
 var current_directory : String = "/" :
 	set(new) :
 		current_directory = new
@@ -9,6 +10,10 @@ var current_directory : String = "/" :
 var sudo : bool = false :
 	set(new) :
 		sudo = new
+		change_prompt()
+var supersudo : bool = false :
+	set(new) :
+		supersudo = new
 		change_prompt()
 var user : String = "loswald" :
 	set(new) :
@@ -26,7 +31,7 @@ func _ready() -> void:
 
 func change_prompt() -> void :
 	prompt = "{sudo}{user}@{console}{path}:-$ ".format({
-		"sudo" : "SUPER_" if sudo else "",
+		"sudo" : "NOC_" if supersudo else ("SUPER_" if sudo else ""),
 		"user" : user,
 		"console" : cons,
 		"path" : "::"+current_directory if current_directory != "/" else "",
@@ -116,35 +121,56 @@ IN WITNESS WHEREOF, the undersigned, by using the NOCTURNE Military Console, ack
 				Estimated duration : min 4H, ~4D, max 1W4D
 				Environnement : ASH_STORM, VOLCANIC_CAVERN, VOLCANIC_FLANK
 				Objective : Gather intel on possible lifeforms thriving in the ash.
-				    - IF POSSIBLE, secure a lifeform
-				    - IF POSSIBLE, gather samples of the terrain, the ash deposits, and any organic life
+				\\- IF POSSIBLE, secure a lifeform
+				\\- IF POSSIBLE, gather samples of the terrain, the ash deposits, and any organic life
 				Mission Squad : DIVISION_9_SQUAD_9
-				    composed of :
-						1 Xavier Bordeau (SQUAD_CAPTAIN)
-						2 Carmen Delaborne (SQUAD_VICE_CAPTAIN)
-						3 Lucia Oswald (SQUAD_COORDINATOR)
-						4 Yasen Ernerst (FRONTLINER)
-						5 Yasha Kosiovich (ANCHOR)
-						6 Mark Martin (ANALYST)
-						7 Sylviy Phan (STRATEGIST)
-						8 Amélie Moreau (FRONTLINER)
-						9 Alejandro Herrera-Cruz (ANALYST)
-						10 Luka Dimitrov (INFILTRATOR)
-						11 Katarzyna Morozova (OUTERSCOUT)
-						12  (FRONTLINER)
-						13  (OUTERSCOUT)
+				\\composed of :
+				\\\\1 Xavier Bordeau (SQUAD_CAPTAIN)
+				\\\\2 Carmen Delaborne (SQUAD_VICE_CAPTAIN)
+				\\\\3 Lucia Oswald (SQUAD_COORDINATOR)
+				\\\\4 Yasen Ernerst (FRONTLINER)
+				\\\\5 Yasha Kosiovich (ANCHOR)
+				\\\\6 Mark Martin (ANALYST)
+				\\\\7 Sylviy Phan (STRATEGIST)
+				\\\\8 Amélie Moreau (FRONTLINER)
+				\\\\9 Alejandro Herrera-Cruz (ANALYST)
+				\\\\10 Luka Dimitrov (INFILTRATOR)
+				\\\\11 Katarzyna Morozova (OUTERSCOUT)
+				\\\\12 Tanja Mihajlovic (FRONTLINER)
+				\\\\13 Vasko Levskaya (OUTERSCOUT)
 				Equipment :
-					1000 pylons
-					6 scouting drones
-					2 combat drones
-					300 filters
-					200 rations (~two weeks worth)
-					7 thermal blankets
+				\\1000 pylons
+				\\6 scouting drones
+				\\2 combat drones
+				\\300 filters
+				\\200 rations (~two weeks worth)
+				\\7 thermal blankets
 				
-				Post-scriptum : WE HAVE CONFIRMED INTEL OF LIFEFORMS IN THE AREA. IF YOU DO NOT FIND ANY, LEAVE YOUR SCOUTING DRONES AT THE LOCATION IN FILM MODE.",
-				"context.txt" : "",
+				Post-scriptum : WE HAVE CONFIRMED INTEL OF LIFEFORMS IN THE AREA. IF YOU DO NOT FIND ANY, LEAVE YOUR SCOUTING DRONES AT THE LOCATION IN FILM MODE.".replace("\\","    "),
+				
+				"context.txt" : "TIMELINE OF EVENTS
+				
+				2034 - AEGIS REVEALS MICROCARBON-WOVEN PLATING (MICROPLATING)
+				  - USES WEAVING PATTERN TO CANCEL OUT 95~98% OF MOMENT, EFFECTIVELY RENDING BULLETS UNUSABLE
+				2041 - AEGIS FINALISES ITS WEAPON PROTOTYPE - THE 3-BLADE, A MICROCARBON BLADE ONLY 3 PARTICLES WIDE
+				  - CAN CUT THROUGH MOST MATERIAL, INCLUDING MICROPLATING
+				2041 - AEGIS CREATES NOCTURNE - STRIKE/ANALYSIS SQUAD ASSIGNED TO PREVENTING CONFLICT AND SAVING HUMANITY
+				2043 - EVENT::UPHEAVAL - 7 ACTIVE HYPERPLINIANS MEGAVOLCANOES SPROUT OUT OF THE EARTH OVER THE SPAN OF A FEW WEEKS
+				  - ASHEN STORMS, ACID RAIN AND VOLCANIC ERUPTIONS RENDER 68~73% OF TERRITORIES INHABITABLE 
+				2053 - DIVISION 7 OF NOCTURNE (GANYMEDE) REPORTS SCANS OF THERMAL CAMERAS - CONFIRMS EXISTENCE OF LIFEFORMS IN THE ASHEN STORMS
+				  - IMPLIES LOCAL GENE POOL MAY HAVE ADAPTED TO LIFE IN THE ASH",
+				
+				"protocol.txt" : "MISSION PROTOCOL
+				
+				Mission briefing in the aircraft
+				DO NOT OPEN THE AIRCRAFT DOOR UNTIL EVERYONE HAS PUT ON THEIR MASKS
+				Once out of the aircraft, start placing repeater pylons to create a network - about 5m apart, never more than 6m
+				If anything of note is found, ping your strategist
+				As a strategist, if you deem that the information is important, chain ping to tree root
+				ONLY THE CAPTAIN / VICE_CAPTAIN / COORDINATOOR ARE ALLOWED TO DEPTH PING THE ENTIRE TREE"
 			},
 			"p_private" : {
+				"prometheus.txt" : "PROJECT PROMETHEUS - DO NOT SHARE TO ANYONE - SHARING THIS FILE OR ITS CONTENT WILL LEAD TO JUDICIARY ACTION"
 			}
 		}
 	}
@@ -203,6 +229,8 @@ func has_perms(from:String, to : String) -> bool :
 		for i : String in path.split("/",false) :
 			if i not in dir.keys() :
 				return true
+			elif i.to_lower() == "p_private" :
+				return State.supersudo
 			elif i.to_lower().begins_with("p_") :
 				return State.sudo
 			elif i.contains(".") :
