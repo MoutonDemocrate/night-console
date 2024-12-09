@@ -110,7 +110,38 @@ IN WITNESS WHEREOF, the undersigned, by using the NOCTURNE Military Console, ack
 			",
 			"nocturne.png" : "res://assets/textures/empire.png",
 			"p_mission" : {
-				"mission_information.txt" : "",
+				"mission_information.txt" : "MISSION INFORMATION - PRIVATE - SHARE UNDER NO CIRCUMSTANCES
+				
+				Mission location : OURAL-4
+				Estimated duration : min 4H, ~4D, max 1W4D
+				Environnement : ASH_STORM, VOLCANIC_CAVERN, VOLCANIC_FLANK
+				Objective : Gather intel on possible lifeforms thriving in the ash.
+				    - IF POSSIBLE, secure a lifeform
+				    - IF POSSIBLE, gather samples of the terrain, the ash deposits, and any organic life
+				Mission Squad : DIVISION_9_SQUAD_9
+				    composed of :
+						1 Xavier Bordeau (SQUAD_CAPTAIN)
+						2 Carmen Delaborne (SQUAD_VICE_CAPTAIN)
+						3 Lucia Oswald (SQUAD_COORDINATOR)
+						4 Yasen Ernerst (FRONTLINER)
+						5 Yasha Kosiovich (ANCHOR)
+						6 Mark Martin (ANALYST)
+						7 Sylviy Phan (STRATEGIST)
+						8 Amélie Moreau (FRONTLINER)
+						9 Alejandro Herrera-Cruz (ANALYST)
+						10 Luka Dimitrov (INFILTRATOR)
+						11 Katarzyna Morozova (OUTERSCOUT)
+						12  (FRONTLINER)
+						13  (OUTERSCOUT)
+				Equipment :
+					1000 pylons
+					6 scouting drones
+					2 combat drones
+					300 filters
+					200 rations (~two weeks worth)
+					7 thermal blankets
+				
+				Post-scriptum : WE HAVE CONFIRMED INTEL OF LIFEFORMS IN THE AREA. IF YOU DO NOT FIND ANY, LEAVE YOUR SCOUTING DRONES AT THE LOCATION IN FILM MODE.",
 				"context.txt" : "",
 			},
 			"p_private" : {
